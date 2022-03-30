@@ -13,9 +13,9 @@ Demo::Demo(const std::shared_ptr<IfRuntime>& runtime, const std::string &ipv6_mu
 
   this->_pSSLContextIf = std::make_shared<CppCommon::Asio::SSLContext>(asio::ssl::context::tlsv12);
   this->_pSSLContextIf->set_password_callback([](size_t max_length, asio::ssl::context::password_purpose purpose) -> std::string { return "qwerty"; });
-  this->_pSSLContextIf->use_certificate_chain_file("../tools/certificates/server.pem");
-  this->_pSSLContextIf->use_private_key_file("../tools/certificates/server.pem", asio::ssl::context::pem);
-  this->_pSSLContextIf->use_tmp_dh_file("../tools/certificates/dh4096.pem");
+  this->_pSSLContextIf->use_certificate_chain_file("../../tools/certificates/server.pem");
+  this->_pSSLContextIf->use_private_key_file("../../tools/certificates/server.pem", asio::ssl::context::pem);
+  this->_pSSLContextIf->use_tmp_dh_file("../../tools/certificates/dh4096.pem");
 
   // Create TCP Server IF
   this->_pTLSServerIf = std::make_shared<TLSServerAdapter>(this->_ptrService, this->_pSSLContextIf, ipv6_multicast);
