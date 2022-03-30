@@ -217,6 +217,8 @@ protected:
     */
     virtual void onError(int error, const std::string& category, const std::string& message) {}
 
+    virtual void onReceived(std::shared_ptr<SSLSession>& session, const void* buffer, size_t size) {}
+
 protected:
     // Server sessions
     std::shared_mutex _sessions_lock;

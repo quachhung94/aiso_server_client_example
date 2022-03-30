@@ -381,6 +381,9 @@ size_t SSLSession::Receive(void* buffer, size_t size)
 
         // Call the buffer received handler
         onReceived(buffer, received);
+
+        auto receive_session(this->shared_from_this());
+        _server->onReceived(receive_session, buffer, received);
     }
 
     // Disconnect on error
@@ -452,6 +455,8 @@ size_t SSLSession::Receive(void* buffer, size_t size, const CppCommon::Timespan&
 
         // Call the buffer received handler
         onReceived(buffer, received);
+        auto receive_session(this->shared_from_this());
+        _server->onReceived(receive_session, buffer, received);
     }
 
     // Disconnect on error
@@ -504,6 +509,9 @@ void SSLSession::TryReceive()
 
             // Call the buffer received handler
             onReceived(_receive_buffer.data(), size);
+
+            auto receive_session(this->shared_from_this());
+            _server->onReceived(receive_session,_receive_buffer.data(), size);
 
             // If the receive buffer is full increase its size
             if (_receive_buffer.size() == size)
