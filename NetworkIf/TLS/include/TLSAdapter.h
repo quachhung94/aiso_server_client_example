@@ -45,6 +45,13 @@ public:
   // Component define callback function to handle TLS event
   // then push to TLSAdapter by setEventCallBack function
   void setEventCallBack(const std::shared_ptr<onTLSAdapterEventType>& eventHandler);
+  void DisconnectAndStop()
+  {
+    _stop = true;
+    DisconnectAsync();
+    while (IsConnected())
+      CppCommon::Thread::Yield();
+  }
 
 protected:
   void onConnected() override;
@@ -59,6 +66,7 @@ private:
   bool checkIpv6Address(const std::string& ipv6_address);
   bool _validSUTAddress;
   std::shared_ptr<onTLSAdapterEventType> _onEventHandler[en_tlsAdapterCallbackType_NUM];
+  std::atomic<bool> _stop{false};
 };
 
 #endif
