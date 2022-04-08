@@ -4,6 +4,7 @@ list(APPEND LINKLIBS cppcommon)
 list(APPEND LINKLIBS IFRuntime)
 list(APPEND LINKLIBS PlatformInterface)
 list(APPEND LINKLIBS TLS)
+list(APPEND LINKLIBS spdlog)
 
 # OpenSSL libraries
 message(STATUS "OpenSSL version: ${OPENSSL_VERSION} ${OPENSSL_INCLUDE_DIR} ${OPENSSL_LIBRARIES}")

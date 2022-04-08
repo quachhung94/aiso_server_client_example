@@ -1,11 +1,11 @@
 #include "spdlog/sinks/rotating_file_sink.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 #include "TLSServer.h"
 
 #define LOG_TAG "DemoCpp"
 #define	LOG_USER	(1<<3)	/* random user-level messages */
-#define IPV6_ADDR "::01"
-#define IPV6_PORT 9090
+
 
 static void Spdlog_Init()
 {
@@ -46,6 +46,10 @@ int main(int argc, char **argv) {
     auto runenv = std::make_shared<IfRuntime>();
     auto demo = std::make_shared<Demo>(runenv, IPV6_ADDR, IPV6_PORT, "enp59s0");
     demo->start();
+    // platform::core::SystemStatistics::instance().dump();
+
+    // auto MainApp = std::make_shared<App>();
+    // MainApp->start();
 
     // Perform text input
     // std::string line;
@@ -70,7 +74,6 @@ int main(int argc, char **argv) {
 
     // Stop the server
     std::cout << "Server stopping...";
-    demo->stop();
     std::cout << "Done!" << std::endl;
 
     return 0;

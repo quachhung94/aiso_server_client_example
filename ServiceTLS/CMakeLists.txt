@@ -4,12 +4,14 @@ list(APPEND LINKLIBS cppcommon)
 list(APPEND LINKLIBS IFRuntime)
 list(APPEND LINKLIBS PlatformInterface)
 list(APPEND LINKLIBS TLSSERVER)
+list(APPEND LINKLIBS platform)
+list(APPEND LINKLIBS spdlog)
 
 # OpenSSL libraries
 message(STATUS "OpenSSL version: ${OPENSSL_VERSION} ${OPENSSL_INCLUDE_DIR} ${OPENSSL_LIBRARIES}")
 
 # System directories
-include_directories(SYSTEM "${CMAKE_CURRENT_LIST_DIR}/include" ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/../Logging/spdlog/include")
+include_directories(SYSTEM "${CMAKE_CURRENT_LIST_DIR}/include" ${INCLUDE_DIRECTORIES} "${CMAKE_CURRENT_SOURCE_DIR}/../Logging/spdlog/include" "${CMAKE_CURRENT_SOURCE_DIR}/../lib/platform/include")
 
 # # Library
 # file(GLOB_RECURSE LIB_HEADER_FILES "include/*.h")

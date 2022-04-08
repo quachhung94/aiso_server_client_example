@@ -1,6 +1,7 @@
 #include "spdlog/sinks/rotating_file_sink.h"
 #include "spdlog/spdlog.h"
 #include "TLSClient.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 
 #define LOG_TAG "ClientCpp"
 #define	LOG_USER	(1<<3)	/* random user-level messages */
